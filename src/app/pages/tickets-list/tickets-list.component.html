@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">GVT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/principal">Inicio <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Tickets
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/list">Consultar</a>
+          <a class="dropdown-item" href="/agregar">Generar Nuevo Ticket</a>
+
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">Acerca de </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contacto">Contacto</a>
+      </li>
+
+    </ul>
+    <div class="container mt-5" style="width: 5px;" >
+      <div class="row" *ngIf="authService.userState as user">
+          <div class="media">
+              <img class="align-self-start mr-5 img-thumbnail rounded-circle" width="50" height="50"
+                  src="{{(user.photoURL) ? user.photoURL : '/assets/dummy.png'}}"
+                  alt="{{user.displayName}}"/>
+                  <p>E-Mail: <strong>{{user.email}}</strong></p>
+                  <a class="btn btn-block btn primary" (click)="authService.cerrarSesion()">
+                    Cerrar sesión
+                  </a>
+          </div>
+      </div>
+
+
+  </div>
+  </div>
+</nav>
+<table class="table">
+  <thead class="thead-dark">
+      <tr>
+          <th>Requester</th>
+          <th>Asunto</th>
+          <th>Descripción</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Status</th>
+          <th>Departamento</th>
+          <th>Status</th>
+          <th>Eliminar</th>
+      </tr>
+
+  </thead>
+  <tbody>
+      <tr *ngFor="let ticket of tickets">
+          <td>{{ticket.payload.doc.data().requester}}</td>
+          <td>{{ticket.payload.doc.data().asunto}}</td>
+          <td>{{ticket.payload.doc.data().descripcion}}</td>
+          <td>{{ticket.payload.doc.data().fecha}}</td>
+          <td>{{ticket.payload.doc.data().hora}}</td>
+          <td>{{ticket.payload.doc.data().status}}</td>
+          <td>
+            {{ticket.payload.doc.data().agregar}}
+          </td>
+
+          <td [hidden]="ticket.payload.doc.data().status" (click)="marcarCompletado(ticket)">
+
+              <img src="../../../assets/images/icons/check.svg" width="30px">
+
+          </td>
+          <td  [hidden]="ticket.payload.doc.data().status" (click)="eliminarTicket(ticket)">
+            <img src="../../../assets/images/icons/trash-fill.svg" width="20px">
+
+          </td>
+
+
+
+      </tr>
+  </tbody>
+
+</table>

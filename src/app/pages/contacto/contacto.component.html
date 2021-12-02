@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">GVT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/principal">Inicio <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Tickets
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/list">Consultar</a>
+          <a class="dropdown-item" href="/agregar">Generar Nuevo Ticket</a>
+
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/about">Acerca de </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contacto">Contacto</a>
+      </li>
+
+    </ul>
+    <div class="container mt-5" style="width: 5px;" >
+      <div class="row" *ngIf="authService.userState as user">
+          <div class="media">
+              <img class="align-self-start mr-5 img-thumbnail rounded-circle" width="50" height="50"
+                  src="{{(user.photoURL) ? user.photoURL : '/assets/dummy.png'}}"
+                  alt="{{user.displayName}}"/>
+                  <p>E-Mail: <strong>{{user.email}}</strong></p>
+                  <a class="btn btn-block btn primary" (click)="authService.cerrarSesion()">
+                    Cerrar sesión
+                  </a>
+          </div>
+      </div>
+
+
+  </div>
+  </div>
+</nav>
+<div class="container">
+
+
+
+    <div class="row">
+        <div class="col-md-12 text-center ">
+            <h1>¿Tienes alguna duda o sugerencia?</h1>
+            <img  justify-content="center" src="./assets/duda.gif" width="200" height="200" >
+        </div>
+    </div>
+    <div style="background-color:rgb(255, 255, 255)" class="row"> <legend class="text-center header text-black"><strong> Contactános</strong></legend></div>
+    <div class="card-group">
+      <div class="card">
+        <img src="../../../assets/correo-electronico.svg" class="card-img-top" width="1" height="50">
+        <div class="card-body">
+          <h5 class="card-title">E-Mail</h5>
+          <p class="card-text">lizethta.ti18@utsjr.edu.mx<br>edithgh.ti18@gmail.com<br>mitzirv.ti18@utsjr.edu.mx</p>
+        </div>
+
+      </div>
+      <div class="card">
+        <img src="../../../assets/llamada-telefonica .svg" class="card-img-top"  width="1" height="50">
+        <div class="card-body">
+          <h5 class="card-title">Llamanos</h5>
+          <p class="card-text"><br>427-123-56-78<br>427-124-90-65</p>
+        </div>
+
+      </div>
+      <div class="card">
+        <img src="../../../assets//marcador-de-posicion.svg"class="card-img-top"  width="1" height="50">
+        <div class="card-body">
+          <h5 class="card-title">Ubicación</h5>
+          <p class="card-text"><br>Av.La Palma No.125,Col Vista Hermosa<br>San Juan del Rio,Qro.C.P 76800</p>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+</div>
